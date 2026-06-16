@@ -30,10 +30,8 @@ export function DriverCard({
 
   return (
     <Card style={styles.sheetContainer}>
-      {/* Top Grab Handle for sheet visual affordance */}
       <View style={styles.grabHandle} />
 
-      {/* Row 1: ETA and Status Banners */}
       <View style={styles.headerRow}>
         <View>
           <ThemedText style={styles.statusTitle} type="defaultSemiBold">
@@ -55,16 +53,13 @@ export function DriverCard({
 
       <View style={[styles.divider, { backgroundColor: dividerColor }]} />
 
-      {/* Row 2: Driver profile, vehicle type and plate number */}
       <View style={styles.profileRow}>
-        {/* Driver Avatar */}
         <Image
-          source={{ uri: driver.avatar }}
+          source={typeof driver.avatar === 'string' ? { uri: driver.avatar } : driver.avatar}
           style={styles.avatar}
-          defaultSource={require('@/assets/images/react-logo.png')} // Fallback in case of net fail
+          defaultSource={require('@/assets/images/react-logo.png')}
         />
         
-        {/* Name and Rating */}
         <View style={styles.driverInfo}>
           <ThemedText style={styles.driverName} type="defaultSemiBold">
             {driver.name}
@@ -77,13 +72,11 @@ export function DriverCard({
           </View>
         </View>
 
-        {/* Vehicle & Plate details */}
         <View style={styles.vehicleDetails}>
           <ThemedText style={styles.vehicleModel} type="defaultSemiBold">
             {vehicle.model}
           </ThemedText>
           
-          {/* Custom Lagos Plate Badge */}
           <View style={[styles.plateBadge, { borderColor: cardBorderColor }]}>
             <View style={styles.plateHeader}>
               <ThemedText style={styles.plateHeaderText}>FEDERAL REPUBLIC OF NIGERIA</ThemedText>
@@ -97,9 +90,7 @@ export function DriverCard({
 
       <View style={[styles.divider, { backgroundColor: dividerColor }]} />
 
-      {/* Row 3: Action Buttons (Cancel / Call / Message) */}
       <View style={styles.actionsRow}>
-        {/* Cancel Button */}
         <Pressable
           onPress={onCancelPress}
           style={({ pressed }) => [
@@ -113,7 +104,6 @@ export function DriverCard({
           </ThemedText>
         </Pressable>
 
-        {/* Action circle buttons */}
         <View style={styles.iconButtonsGroup}>
           <Pressable
             style={({ pressed }) => [
@@ -147,7 +137,7 @@ const styles = StyleSheet.create({
     left: 16,
     right: 16,
     borderRadius: 30,
-    paddingTop: 12,
+    paddingTop: 8,
   },
   grabHandle: {
     width: 40,
@@ -155,13 +145,13 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     backgroundColor: '#E5E5E5',
     alignSelf: 'center',
-    marginBottom: 16,
+    marginBottom: 10,
   },
   headerRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: 10,
   },
   statusTitle: {
     fontSize: 19,
@@ -173,9 +163,9 @@ const styles = StyleSheet.create({
     color: '#757575',
   },
   etaBadge: {
-    width: 54,
-    height: 54,
-    borderRadius: 16,
+    width: 48,
+    height: 48,
+    borderRadius: 14,
     backgroundColor: '#1A1A1A',
     justifyContent: 'center',
     alignItems: 'center',
@@ -193,7 +183,7 @@ const styles = StyleSheet.create({
   },
   divider: {
     height: 1,
-    marginVertical: 12,
+    marginVertical: 8,
   },
   profileRow: {
     flexDirection: 'row',
@@ -201,9 +191,9 @@ const styles = StyleSheet.create({
     marginVertical: 4,
   },
   avatar: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: 42,
+    height: 42,
+    borderRadius: 21,
     marginRight: 12,
     backgroundColor: '#E5E5E5',
   },
@@ -268,12 +258,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 8,
+    marginTop: 4,
   },
   cancelButton: {
     flex: 1,
-    height: 48,
-    borderRadius: 24,
+    height: 42,
+    borderRadius: 21,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
@@ -287,9 +277,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   iconBtn: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: 42,
+    height: 42,
+    borderRadius: 21,
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: 10,

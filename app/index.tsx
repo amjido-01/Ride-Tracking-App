@@ -29,7 +29,6 @@ export default function ActiveRideScreen() {
     }
   }, [ride.status, router]);
 
-  // Handle manual cancel button click
   const handleCancelRide = () => {
     cancelRide();
   };
@@ -53,7 +52,6 @@ export default function ActiveRideScreen() {
     );
   }
 
-  // Render cancelled state
   if (ride.status === 'CANCELLED') {
     return (
       <EmptyState
@@ -68,7 +66,6 @@ export default function ActiveRideScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Full-Screen Map Component */}
       <MapComponent
         driverLocation={ride.driverLocation}
         destinationLocation={ride.destinationLocation}
@@ -77,7 +74,6 @@ export default function ActiveRideScreen() {
         status={ride.status}
       />
 
-      {/* Floating Top Header Bar */}
       <SafeAreaView edges={['top']} style={styles.safeHeader}>
         <View style={[styles.headerFloatingCapsule, { backgroundColor: headerBg }]}>
           <Pressable style={styles.headerBackBtn} onPress={handleCancelRide}>
@@ -90,7 +86,6 @@ export default function ActiveRideScreen() {
         </View>
       </SafeAreaView>
 
-      {/* Floating Bottom Info Card */}
       <DriverCard
         driver={ride.driver}
         vehicle={ride.vehicle}

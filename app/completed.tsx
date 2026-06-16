@@ -14,16 +14,13 @@ export default function RideCompletedScreen() {
   const router = useRouter();
   const { ride, tripSummary, resetRide } = useRide();
 
-  // Hardcoded for premium white theme as requested
   const backgroundColor = '#FFFFFF';
 
-  // Trigger state reset and return to tracking index
   const handleCompleteRide = () => {
     resetRide();
     router.replace('/');
   };
 
-  // Gracefully handle the edge case where no ride details exist (Direct URL entry / Reloads)
   if (!tripSummary) {
     return (
       <EmptyState
@@ -53,7 +50,6 @@ export default function RideCompletedScreen() {
           </ThemedText>
         </View>
 
-        {/* Central Invoice Receipt Component */}
         <View style={styles.receiptWrapper}>
           <RideStats
             summary={tripSummary}
@@ -63,7 +59,6 @@ export default function RideCompletedScreen() {
         </View>
       </View>
 
-      {/* Primary Action Complete Button */}
       <View style={styles.footer}>
         <Button
           title="Complete Ride"
@@ -95,7 +90,7 @@ const styles = StyleSheet.create({
     width: 72,
     height: 72,
     borderRadius: 36,
-    backgroundColor: '#ECFDF5', // Translucent emerald
+    backgroundColor: '#ECFDF5',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
