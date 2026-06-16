@@ -1,50 +1,49 @@
-# Welcome to your Expo app 👋
+# Drive - Ride Tracking App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native technical assessment assignment that simulates a ride tracking experience. Built with Expo, TypeScript, and `react-native-maps`.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **Live Ride Tracking:** A smooth, animated driver marker on a map that follows a predefined route towards the destination.
+- **Premium UI:** A clean, minimalistic, and modern black-and-white design aesthetic.
+- **Driver Card:** Floating interactive bottom sheet displaying the driver's profile, vehicle details, remaining distance, and an animated ETA.
+- **Trip Summary:** An automatic transition to a final receipt screen upon arrival, displaying calculated distance, duration, and final fare in NGN (₦).
+- **Cancel Flow:** Ability to gracefully cancel the ride and restart the simulation.
+- **Unit Tested:** Built-in Jest test suite for mathematical distance and fare calculation utilities.
 
+## Tech Stack
+
+- React Native (Expo)
+- TypeScript
+- React Native Maps
+- React Native Safe Area Context
+- Expo Vector Icons
+- Jest (Unit Testing)
+
+## Getting Started
+
+1. **Install dependencies:**
    ```bash
    npm install
    ```
 
-2. Start the app
-
+2. **Start the development server:**
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+3. **Run Unit Tests:**
+   ```bash
+   npx jest
+   ```
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Project Structure
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- `app/` - Application screens (Next.js-like file-based routing via Expo Router)
+- `components/` - Reusable UI building blocks (Buttons, Cards, Empty States) and Ride-specific widgets (Map, Driver Card, Ride Stats)
+- `context/` - Centralized State Management (`RideContext`) handling the simulation loop and state sharing.
+- `hooks/` - Custom hooks, including the `useRideSimulation` engine.
+- `utils/` - Mathematical helpers for calculating distance (Haversine formula), duration, and fare formatting.
+- `types/` - Core TypeScript interfaces for typesafety across the project.
+- `__tests__/` - Jest test suite for the math engine.
+# Ride-Tracking-App
