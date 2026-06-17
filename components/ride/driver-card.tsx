@@ -33,22 +33,12 @@ export function DriverCard({
       <View style={styles.grabHandle} />
 
       <View style={styles.headerRow}>
-        <View>
-          <ThemedText style={styles.statusTitle} type="defaultSemiBold">
-            Driver is arriving
-          </ThemedText>
-          <ThemedText style={styles.statsSubtitle}>
-            Distance left: {formatDistance(distanceRemainingMeters)}
-          </ThemedText>
-        </View>
-        <View style={styles.etaBadge}>
-          <ThemedText style={styles.etaText}>
-            {etaMinutes}
-          </ThemedText>
-          <ThemedText style={styles.etaUnit}>
-            MIN
-          </ThemedText>
-        </View>
+        <ThemedText style={styles.statusTitle} type="defaultSemiBold">
+          Driver is arriving
+        </ThemedText>
+        <ThemedText style={styles.statsSubtitle}>
+          {formatDistance(distanceRemainingMeters)} | {etaMinutes < 10 ? '0' : ''}{etaMinutes}:00
+        </ThemedText>
       </View>
 
       <View style={[styles.divider, { backgroundColor: dividerColor }]} />
@@ -64,10 +54,9 @@ export function DriverCard({
           <ThemedText style={styles.driverName} type="defaultSemiBold">
             {driver.name}
           </ThemedText>
-          <View style={styles.ratingBadge}>
-            <Ionicons name="star" size={14} color="#EAB308" />
-            <ThemedText style={styles.ratingText}>
-              {driver.rating.toFixed(2)}
+          <View style={styles.roleBadge}>
+            <ThemedText style={styles.roleText}>
+              Driver
             </ThemedText>
           </View>
         </View>
@@ -76,15 +65,6 @@ export function DriverCard({
           <ThemedText style={styles.vehicleModel} type="defaultSemiBold">
             {vehicle.model}
           </ThemedText>
-          
-          <View style={[styles.plateBadge, { borderColor: cardBorderColor }]}>
-            <View style={styles.plateHeader}>
-              <ThemedText style={styles.plateHeaderText}>FEDERAL REPUBLIC OF NIGERIA</ThemedText>
-            </View>
-            <ThemedText style={[styles.plateNumberText, { color: plateTextCol }]}>
-              {vehicle.plateNumber}
-            </ThemedText>
-          </View>
         </View>
       </View>
 
@@ -148,8 +128,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   headerRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 10,
   },
@@ -157,29 +135,13 @@ const styles = StyleSheet.create({
     fontSize: 19,
     fontWeight: 'bold',
     marginBottom: 4,
+    textAlign: 'center',
   },
   statsSubtitle: {
     fontSize: 14,
     color: '#757575',
-  },
-  etaBadge: {
-    width: 48,
-    height: 48,
-    borderRadius: 14,
-    backgroundColor: '#1A1A1A',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  etaText: {
-    color: '#FFFFFF',
-    fontSize: 20,
-    fontWeight: 'bold',
-    lineHeight: 22,
-  },
-  etaUnit: {
-    color: '#E5E5E5',
-    fontSize: 10,
-    fontWeight: '600',
+    textAlign: 'center',
+    fontWeight: '500',
   },
   divider: {
     height: 1,
@@ -206,15 +168,14 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     marginBottom: 4,
   },
-  ratingBadge: {
+  roleBadge: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  ratingText: {
+  roleText: {
     fontSize: 13,
     fontWeight: '600',
     color: '#757575',
-    marginLeft: 4,
   },
   vehicleDetails: {
     alignItems: 'flex-end',
@@ -223,36 +184,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#1A1A1A',
     marginBottom: 6,
-  },
-  // Lagos License Plate badge replica styling
-  plateBadge: {
-    borderWidth: 1.5,
-    borderRadius: 6,
-    paddingHorizontal: 8,
-    paddingVertical: 2,
-    backgroundColor: '#FFFFFF',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-  },
-  plateHeader: {
-    borderBottomWidth: 0.5,
-    borderBottomColor: '#E5E5E5',
-    paddingBottom: 1,
-    marginBottom: 2,
-  },
-  plateHeaderText: {
-    fontSize: 5,
-    fontWeight: 'bold',
-    color: '#3B82F6', // Blue federal text
-    letterSpacing: 0.3,
-  },
-  plateNumberText: {
-    fontSize: 12,
-    fontWeight: 'bold',
-    letterSpacing: 1,
   },
   actionsRow: {
     flexDirection: 'row',

@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { StyleSheet, View, Platform, Animated } from 'react-native';
-import MapView, { Marker, Polyline, AnimatedRegion } from 'react-native-maps';
-import { Ionicons } from '@expo/vector-icons';
-import { Coordinate, RoutePoint, RideStatus } from '../../types/ride';
 import { useThemeColor } from '@/hooks/use-theme-color';
+import { Ionicons } from '@expo/vector-icons';
+import React, { useEffect, useRef, useState } from 'react';
+import { Animated, Platform, StyleSheet, Text, View } from 'react-native';
+import MapView, { AnimatedRegion, Marker, Polyline } from 'react-native-maps';
+import { Coordinate, RideStatus, RoutePoint } from '../../types/ride';
 
 interface MapComponentProps {
   driverLocation: Coordinate;
@@ -185,15 +185,38 @@ export function MapComponent({
           </>
         )}
 
+        {/* Pickup Pin Marker */}
+        {routePath.length > 0 && (
+          <Marker
+            coordinate={{ latitude: routePath[0].latitude, longitude: routePath[0].longitude }}
+            tracksViewChanges={true}
+            accessibilityLabel="Pickup marker"
+            accessibilityRole="image"
+            zIndex={2}
+          >
+            <View style={styles.customMarkerContainer}>
+              <View style={styles.simpleLabelBubble}>
+                <Text style={styles.simpleLabelText}>Pickup</Text>
+              </View>
+              <View style={styles.pickupMarkerOuter}>
+                <View style={styles.pickupMarkerInner} />
+              </View>
+            </View>
+          </Marker>
+        )}
+
         {/* Destination Pin Marker */}
         <Marker
           coordinate={destinationLocation}
-          anchor={{ x: 0.5, y: 0.5 }}
-          tracksViewChanges={false}
+          tracksViewChanges={true}
           accessibilityLabel="Destination marker"
           accessibilityRole="image"
+          zIndex={1}
         >
-          <View style={styles.destMarker}>
+          <View style={styles.customMarkerContainer}>
+            <View style={styles.simpleLabelBubble}>
+              <Text style={styles.simpleLabelText}>Destination</Text>
+            </View>
             <View style={styles.destMarkerOuter}>
               <View style={styles.destMarkerInner} />
             </View>
@@ -233,10 +256,30 @@ const styles = StyleSheet.create({
   map: {
     ...StyleSheet.absoluteFillObject,
   },
-  // Destination Pin Styling (Premium Minimalist Dot)
-  destMarker: {
-    padding: 6,
+  // Custom Marker Callout Styling
+  customMarkerContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
+  simpleLabelBubble: {
+    width: 80, // Explicit width fixes Android text measuring
+    backgroundColor: '#FFFFFF',
+    paddingVertical: 4,
+    borderRadius: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 3,
+    marginBottom: 4,
+    alignItems: 'center',
+  },
+  simpleLabelText: {
+    fontSize: 12,
+    color: '#1A1A1A',
+    fontWeight: 'bold',
+  },
+  // Destination Pin Styling (Premium Minimalist Dot)
   destMarkerOuter: {
     width: 24,
     height: 24,
@@ -249,6 +292,26 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+  },
+  // Pickup Pin Styling
+  pickupMarkerOuter: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: '#10B981', // Emerald Green
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  pickupMarkerInner: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: '#FFFFFF',
   },
   destMarkerInner: {
     width: 10,

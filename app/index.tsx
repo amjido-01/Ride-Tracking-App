@@ -79,10 +79,18 @@ export default function ActiveRideScreen() {
           <Pressable style={styles.headerBackBtn} onPress={handleCancelRide}>
             <Ionicons name="arrow-back" size={20} color="#1A1A1A" />
           </Pressable>
-          <ThemedText style={styles.headerTitle} type="defaultSemiBold">
-            Ride Tracking
-          </ThemedText>
-          <View style={styles.headerPlaceholderBtn} />
+          <View style={styles.headerTitleContainer}>
+            <ThemedText style={styles.headerTitle} type="defaultSemiBold">
+              Gwale
+            </ThemedText>
+            <Ionicons name="arrow-forward" size={14} color="white" style={styles.headerArrow} />
+            <ThemedText style={styles.headerTitle} type="defaultSemiBold">
+              Dala
+            </ThemedText>
+          </View>
+          <Pressable style={styles.headerMinimizeBtn}>
+            <Ionicons name="remove" size={24} color="#1A1A1A" />
+          </Pressable>
         </View>
       </SafeAreaView>
 
@@ -132,13 +140,26 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  headerTitleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  },
+  headerArrow: {
+    marginHorizontal: 8,
+  },
   headerTitle: {
     fontSize: 16,
     fontWeight: 'bold',
     color: 'white',
   },
-  headerPlaceholderBtn: {
+  headerMinimizeBtn: {
     width: 42,
     height: 42,
+    borderRadius: 21,
+    backgroundColor: '#F6F6F6',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
